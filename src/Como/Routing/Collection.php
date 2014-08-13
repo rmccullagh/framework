@@ -3,6 +3,7 @@
 use IteratorAggregate;
 use ArrayIterator;
 use Closure;
+use Como\Http\RequestType as HTTP;
 
 /**
  * This is a singelton.
@@ -18,10 +19,12 @@ class Collection implements IteratorAggregate
  
   /*
    * A store to hold GET http requests
+   * and POST requests
+   * access index 0 for get, 1 for post
    */ 
   private static $requests = array(
-    "GET"   => array(),
-    "POST"  => array()
+    HTTP::GET   => array(),
+    HTTP::POST  => array()
   );
   
   private function __construct() 
@@ -52,14 +55,14 @@ class Collection implements IteratorAggregate
   {
     switch($type)
     {
-      case 'GET':
-      array_push(self::$requests["GET"], array(
+      case (HTTP::GET):
+      array_push(self::$requests[HTTP::GET], array(
         "uri"       => $uri,
         "callback"  => $callback
       ));
       break;
-      case 'POST':
-      array_push(self::$requests["POST"], array(
+      case (HTTP::POST):
+      array_push(self::$requests[HTTP::POST], array(
         "uri"       => $uri,
         "callback"  => $callback
       ));
