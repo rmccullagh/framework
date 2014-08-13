@@ -18,29 +18,27 @@ Log::debug("Adding :id param");
 
 app::param(':id', "/^[0-9]+$/");
 
+// middleware example
 app::using(function($req, $res) {
- 
    $res->set("X-Your-IP", $req->ip);
-
 });
 
 app::get('/', function($req, $res) {
-  $res->send("Default");
+  var_dump($req, $res);
+  
+  //$res->send("Default");
 });
 
 app::get('/a', function($req, $res) {
   $res->send("a");
 });
-app::get("/user/:id/:id", function($req, $res) {
-  
-  $res->send($req->route);
 
+app::get("/user/:id/:id", function($req, $res) {  
+  $res->send($req->route);
 });
 
 app::get('/product/:id', function($req, $res) {
-
   $res->send("Hello, World");
-
 });
 
 app::run();
