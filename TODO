@@ -1,2 +1,10 @@
 8/12/2014
-* Need to implement other HTTP methods besides GET. Look at Application::run.  
+* Need to implement other HTTP methods besides GET. Look at Application::run
+
+* Routes callbacks are executed in the order that they are defined.
+  Once the framework finds a matching route, it leaves the main loop
+  if one route is defined as "/home/:id", and you request the URL /home/:id
+  the callback will be executed. ":" char currently is a reserved word
+  that has special meaning in a route. Need to implement a way to validate
+  that a raw route does or does not contain it. If a raw route does
+  have it, validate it, and if it fails die.
