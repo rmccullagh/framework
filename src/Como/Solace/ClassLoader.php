@@ -1,13 +1,13 @@
 <?php namespace Como\Solace;
 
-use Como\Log;
-use Closure;
-
 class ClassLoader
 {
   
   public static function register() {
- 
+
+    /**
+     * the /src directory
+     */ 
     $path = __DIR__ . '/../../';
  
     spl_autoload_register(function ($classname) use($path) 
