@@ -11,24 +11,25 @@ abstract class Facade
    */
   private static $implementer_cache = [];
 
+  /**
+   * @return string
+   * This returns a path to a namespaced class
+   */
+  abstract protected static function getRealImplementername();
+
   private static function getInstance($name)
   {
-
     if(! isset(self::$implementer_cache[$name]))
     {
       self::$implementer_cache[$name] = new $name();
-
     }
     
     return self::$implementer_cache[$name];
-    
   }
 
   public static function __callStatic($method, array $arguments = array())
   {
-    
     $class_name = static::getRealImplementerName();
-    
     $reflection = new ReflectionClass($class_name);
     
     if($reflection->hasMethod($method))
@@ -43,9 +44,7 @@ abstract class Facade
       );  
 
     }
-
   }
-
 }
 
 
