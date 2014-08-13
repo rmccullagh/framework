@@ -1,0 +1,13 @@
+Version 0.0.1
+
+*** Development Only, not stable ***
+**  Do not run this with a "live" application, it has not been fully tested. **
+
+
+This is the development of a new PHP framework. Highly influenced by expressjs.
+
+To get started, get the source, and then use nginx, and route all request to index.php
+to the root of the source. Look at nginx.conf
+
+To run correctly, make a directory "log", then change the group of that directory to your username, and www-data
+sudo chown ryan:www-data log 
